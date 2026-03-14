@@ -1229,6 +1229,7 @@ body[data-theme='light'] .header.scrolled {
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse at top, rgba(212, 165, 116, 0.03) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .massages-glow-top,
@@ -1240,6 +1241,7 @@ body[data-theme='light'] .header.scrolled {
   filter: blur(150px);
   opacity: 0.05;
   background: var(--color-primary);
+  pointer-events: none;
 }
 
 .massages-glow-top {
@@ -1259,6 +1261,11 @@ body[data-theme='light'] .header.scrolled {
   justify-content: center;
   gap: 10px;
   margin: 0 auto 48px;
+}
+
+.massages-section .container {
+  position: relative;
+  z-index: 1;
 }
 
 .massages-filter-btn {
