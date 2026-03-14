@@ -101,7 +101,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         massageCards.forEach((card) => {
           const category = card.dataset.category;
-          const shouldShow = activeFilter === 'all' || category === activeFilter;
+          const isBodyBathFilter = activeFilter === 'body-bath';
+          const shouldShow = activeFilter === 'all'
+            || category === activeFilter
+            || (isBodyBathFilter && (category === 'body' || category === 'bath'));
+
           card.classList.toggle('is-hidden', !shouldShow);
         });
       });
