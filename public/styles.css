@@ -1559,11 +1559,12 @@ body[data-theme='light'] .header.scrolled {
   justify-content: center;
   text-decoration: none;
   color: #ffffff;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 1px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-messenger svg {
+  display: block;
 }
 
 .floating-messenger:hover {
@@ -1774,7 +1775,6 @@ body[data-theme='light'] .header.scrolled {
   .floating-messenger {
     width: 52px;
     height: 52px;
-    font-size: 12px;
   }
 
   .hero-cta-group {
