@@ -23,6 +23,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
   window.addEventListener('scroll', handleHeaderScroll);
 
+
+  // ========================================
+  // THEME TOGGLE (DARK/LIGHT)
+  // ========================================
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const mobileThemeToggleBtn = document.getElementById('mobileThemeToggleBtn');
+
+  function applyTheme(theme) {
+    const normalizedTheme = theme === 'light' ? 'light' : 'dark';
+    document.body.setAttribute('data-theme', normalizedTheme);
+    localStorage.setItem('amara-theme', normalizedTheme);
+
+    const nextLabel = normalizedTheme === 'dark' ? 'Light' : 'Dark';
+    const switchToLabel = normalizedTheme === 'dark' ? 'light' : 'dark';
+
+    [themeToggleBtn, mobileThemeToggleBtn].forEach((btn) => {
+      if (!btn) return;
+      btn.textContent = nextLabel;
+      btn.setAttribute('aria-label', `Switch to ${switchToLabel} mode`);
+      btn.setAttribute('aria-pressed', String(normalizedTheme === 'light'));
+    });
+  }
+
+  const savedTheme = localStorage.getItem('amara-theme');
+  applyTheme(savedTheme || 'dark');
+
+  [themeToggleBtn, mobileThemeToggleBtn].forEach((btn) => {
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    });
+  });
+
   // ========================================
   // MOBILE MENU
   // ========================================
