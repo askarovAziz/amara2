@@ -64,6 +64,16 @@ export default function Home() {
             <a href="#healers" className="nav-link">Our Healers</a>
             <a href="#journey" className="nav-link">Begin Your Journey</a>
           </div>
+
+          <button
+            className="theme-toggle-btn"
+            id="themeToggleBtn"
+            type="button"
+            aria-label="Switch to light mode"
+            aria-pressed="false"
+          >
+            Dark
+          </button>
           
           <a href="#journey" className="cta-button desktop-only">Book Now</a>
           
@@ -86,6 +96,15 @@ export default function Home() {
           <a href="#massages" className="mobile-nav-link">Massages</a>
           <a href="#healers" className="mobile-nav-link">Our Healers</a>
           <a href="#journey" className="mobile-nav-link">Begin Your Journey</a>
+          <button
+            className="theme-toggle-btn mobile-theme-toggle"
+            id="mobileThemeToggleBtn"
+            type="button"
+            aria-label="Switch to light mode"
+            aria-pressed="false"
+          >
+            Dark
+          </button>
           <div className="mobile-nav-cta">
             <a href="#journey" className="cta-button-full">Book Your Journey</a>
           </div>
