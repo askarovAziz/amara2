@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // ========================================
   const themeToggleBtn = document.getElementById('themeToggleBtn');
   const mobileThemeToggleBtn = document.getElementById('mobileThemeToggleBtn');
+  const floatingThemeToggleBtn = document.getElementById('floatingThemeToggleBtn');
 
   function applyTheme(theme) {
     const normalizedTheme = theme === 'light' ? 'light' : 'dark';
@@ -38,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextLabel = normalizedTheme === 'dark' ? 'Light' : 'Dark';
     const switchToLabel = normalizedTheme === 'dark' ? 'light' : 'dark';
 
-    [themeToggleBtn, mobileThemeToggleBtn].forEach((btn) => {
+    [themeToggleBtn, mobileThemeToggleBtn, floatingThemeToggleBtn].forEach((btn) => {
       if (!btn) return;
       btn.textContent = nextLabel;
       btn.setAttribute('aria-label', `Switch to ${switchToLabel} mode`);
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const savedTheme = localStorage.getItem('amara-theme');
   applyTheme(savedTheme || 'dark');
 
-  [themeToggleBtn, mobileThemeToggleBtn].forEach((btn) => {
+  [themeToggleBtn, mobileThemeToggleBtn, floatingThemeToggleBtn].forEach((btn) => {
     if (!btn) return;
     btn.addEventListener('click', () => {
       const currentTheme = document.body.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
