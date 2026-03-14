@@ -1253,10 +1253,46 @@ body[data-theme='light'] .header.scrolled {
   right: -100px;
 }
 
+.massages-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto 48px;
+}
+
+.massages-filter-btn {
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 12px 24px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.massages-filter-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+.massages-filter-btn.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
 .massages-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+}
+
+.massage-card.is-hidden {
+  display: none;
 }
 
 .massage-card {
@@ -1818,6 +1854,18 @@ body[data-theme='light'] .header.scrolled {
 
   .massages-grid {
     grid-template-columns: 1fr;
+  }
+
+  .massages-filter {
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .massages-filter-btn {
+    flex: 1 1 calc(50% - 8px);
+    text-align: center;
+    padding: 11px 14px;
+    font-size: 11px;
   }
 
   .healers-grid {

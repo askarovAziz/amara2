@@ -83,6 +83,32 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ========================================
+  // MASSAGES FILTER TABS
+  // ========================================
+  const filterButtons = document.querySelectorAll('.massages-filter-btn');
+  const massageCards = document.querySelectorAll('#massagesGrid .massage-card');
+
+  if (filterButtons.length > 0 && massageCards.length > 0) {
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const activeFilter = button.dataset.filter || 'all';
+
+        filterButtons.forEach((btn) => {
+          const isActive = btn === button;
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-selected', String(isActive));
+        });
+
+        massageCards.forEach((card) => {
+          const category = card.dataset.category;
+          const shouldShow = activeFilter === 'all' || category === activeFilter;
+          card.classList.toggle('is-hidden', !shouldShow);
+        });
+      });
+    });
+  }
+
+  // ========================================
   // HERO SLIDER - DIOR STYLE
   // ========================================
   const slides = document.querySelectorAll('.hero-slide');
