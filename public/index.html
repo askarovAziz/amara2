@@ -28,6 +28,16 @@
         <a href="#journey" class="nav-link">Begin Your Journey</a>
       </div>
       
+      <button
+        class="theme-toggle-btn"
+        id="themeToggleBtn"
+        type="button"
+        aria-label="Switch to light mode"
+        aria-pressed="false"
+      >
+        Dark
+      </button>
+
       <a href="#journey" class="cta-button desktop-only">Book Now</a>
       
       <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav">
@@ -49,6 +59,15 @@
       <a href="#massages" class="mobile-nav-link">Massages</a>
       <a href="#healers" class="mobile-nav-link">Our Healers</a>
       <a href="#journey" class="mobile-nav-link">Begin Your Journey</a>
+      <button
+        class="theme-toggle-btn mobile-theme-toggle"
+        id="mobileThemeToggleBtn"
+        type="button"
+        aria-label="Switch to light mode"
+        aria-pressed="false"
+      >
+        Dark
+      </button>
       <div class="mobile-nav-cta">
         <a href="#journey" class="cta-button-full">Book Your Journey</a>
       </div>
@@ -150,7 +169,7 @@
     </section>
 
     <!-- Legend Section -->
-    <section class="legend">
+    <section id="rituals" class="legend">
       <div class="legend-bg"></div>
       <div class="legend-glow-left"></div>
       <div class="legend-glow-right"></div>
@@ -526,6 +545,57 @@
             <div class="massage-card-glow"></div>
           </div>
 
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Healers Section -->
+    <section id="healers" class="healers-section">
+      <div class="stone-texture"></div>
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-line">
+            <div class="header-line-left"></div>
+            <span class="section-tag">Guides of Restoration</span>
+            <div class="header-line-right"></div>
+          </div>
+          <h2 class="section-title">Our Healers</h2>
+          <div class="section-divider">
+            <div class="divider-dot"></div>
+            <div class="divider-line-long"></div>
+            <div class="divider-diamond"></div>
+            <div class="divider-line-long"></div>
+            <div class="divider-dot"></div>
+          </div>
+          <p class="section-description">
+            Each healer at Amara is trained in ancient bodywork traditions and modern therapeutic care,
+            creating rituals tailored to your journey.
+          </p>
+        </div>
+
+        <div class="healers-grid">
+          <article class="healer-card">
+            <h3 class="healer-name">Layla Al Noor</h3>
+            <p class="healer-role">Master of Moroccan Rituals</p>
+            <p class="healer-description">
+              Specializes in hammam purification journeys and aromatic body therapies passed through generations.
+            </p>
+          </article>
+          <article class="healer-card">
+            <h3 class="healer-name">Youssef Rahman</h3>
+            <p class="healer-role">Deep Tissue Specialist</p>
+            <p class="healer-description">
+              Blends pressure-point science with meditative rhythm to release chronic tension and restore alignment.
+            </p>
+          </article>
+          <article class="healer-card">
+            <h3 class="healer-name">Mira Devani</h3>
+            <p class="healer-role">Couples & Four Hands Expert</p>
+            <p class="healer-description">
+              Known for synchronized healing sessions that create profound calm and emotional reconnection.
+            </p>
+          </article>
         </div>
       </div>
     </section>

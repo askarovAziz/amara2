@@ -1478,6 +1478,57 @@ body[data-theme='light'] .header.scrolled {
   box-shadow: 0 10px 40px rgba(212, 165, 116, 0.3);
 }
 
+
+/* ========================================
+   HEALERS SECTION
+   ======================================== */
+
+.healers-section {
+  position: relative;
+  padding: 120px 0;
+  background: linear-gradient(180deg, var(--color-bg-light) 0%, var(--color-bg) 100%);
+}
+
+.healers-grid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.healer-card {
+  border: 1px solid var(--color-border);
+  background: linear-gradient(180deg, rgba(212, 165, 116, 0.08), rgba(212, 165, 116, 0.02));
+  padding: 32px 28px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.healer-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 165, 116, 0.45);
+}
+
+.healer-name {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.healer-role {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: 14px;
+}
+
+.healer-description {
+  color: var(--color-text);
+  opacity: 0.9;
+}
+
+
 /* ========================================
    FOOTER
    ======================================== */
@@ -1573,6 +1624,10 @@ body[data-theme='light'] .header.scrolled {
     display: none;
   }
 
+  .mobile-theme-toggle {
+    display: inline-flex;
+  }
+
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1616,6 +1671,10 @@ body[data-theme='light'] .header.scrolled {
   }
 
   .massages-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .healers-grid {
     grid-template-columns: 1fr;
   }
 
