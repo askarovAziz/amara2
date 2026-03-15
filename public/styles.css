@@ -1361,6 +1361,27 @@ body[data-theme='light'] .header.scrolled {
   grid-column: span 2;
 }
 
+
+.massage-card-horizontal {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.95fr) minmax(0, 1.55fr);
+  align-items: stretch;
+}
+
+.massage-card-horizontal .massage-card-image {
+  height: 100%;
+  min-height: 320px;
+}
+
+.massage-card-horizontal .massage-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.massage-card-horizontal .massage-pricing {
+  margin-top: auto;
+}
+
 .massage-card-image {
   position: relative;
   height: 200px;
@@ -1923,6 +1944,14 @@ body[data-theme='light'] .header.scrolled {
 
   .massage-card-wide {
     grid-column: span 1;
+  }
+
+  .massage-card-horizontal {
+    display: block;
+  }
+
+  .massage-card-horizontal .massage-card-image {
+    min-height: 220px;
   }
 
   .atmosphere-items {
