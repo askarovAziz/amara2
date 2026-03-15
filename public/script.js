@@ -200,22 +200,31 @@ document.addEventListener('DOMContentLoaded', function() {
   const nextBtn = document.querySelector('.hero-nav-next');
   
   let currentSlide = 0;
-  let slideInterval;
+  let slideInterval = null;
   const slideDuration = 6000; // 6 seconds per slide
 
+  function stopSlideshow() {
+    if (slideInterval !== null) {
+      clearInterval(slideInterval);
+      slideInterval = null;
+    }
+  }
+
   function goToSlide(index) {
-    // Remove active class from current slide and indicator
-    slides[currentSlide].classList.remove('active');
-    indicators[currentSlide].classList.remove('active');
+    if (slides.length === 0) return;
 
-    // Update current slide index
+    if (index >= slides.length) index = 0;
+    if (index < 0) index = slides.length - 1;
+
     currentSlide = index;
-    if (currentSlide >= slides.length) currentSlide = 0;
-    if (currentSlide < 0) currentSlide = slides.length - 1;
 
-    // Add active class to new slide and indicator
-    slides[currentSlide].classList.add('active');
-    indicators[currentSlide].classList.add('active');
+    slides.forEach((slide, slideIndex) => {
+      slide.classList.toggle('active', slideIndex === currentSlide);
+    });
+
+    indicators.forEach((indicator, indicatorIndex) => {
+      indicator.classList.toggle('active', indicatorIndex === currentSlide);
+    });
   }
 
   function nextSlide() {
@@ -227,16 +236,17 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function startSlideshow() {
+    stopSlideshow();
     slideInterval = setInterval(nextSlide, slideDuration);
   }
 
   function resetSlideshow() {
-    clearInterval(slideInterval);
     startSlideshow();
   }
 
   // Initialize slideshow
   if (slides.length > 0) {
+    goToSlide(0);
     startSlideshow();
 
     // Navigation arrows
@@ -266,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroSection = document.querySelector('.hero-dior');
     if (heroSection) {
       heroSection.addEventListener('mouseenter', () => {
-        clearInterval(slideInterval);
+        stopSlideshow();
       });
 
       heroSection.addEventListener('mouseleave', () => {
