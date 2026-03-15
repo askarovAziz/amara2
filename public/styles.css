@@ -1724,8 +1724,8 @@ body.menu-open .floating-actions {
 }
 
 .healer-slide {
-  flex: 0 0 calc(((100% - (6 * 12px)) / 7) * 1.75);
-  min-width: 224px;
+  flex: 0 0 calc(((100% - (6 * 12px)) / 7) * 3.0625);
+  min-width: 392px;
   pointer-events: none;
   transform-origin: center center;
   transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.75s ease, filter 0.75s ease;
