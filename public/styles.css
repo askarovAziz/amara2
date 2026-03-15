@@ -1409,6 +1409,9 @@ body.menu-open .floating-actions {
   grid-column: span 2;
 }
 
+.massage-card-waxing {
+  grid-column: span 1;
+}
 
 .massage-card-horizontal {
   display: grid;
@@ -2031,6 +2034,10 @@ body.menu-open .floating-actions {
     grid-column: span 2;
   }
 
+  .massage-card-waxing {
+    grid-column: span 1;
+  }
+
   .massage-card-horizontal {
     display: block;
   }
@@ -2115,6 +2122,10 @@ body.menu-open .floating-actions {
 
 
   .massage-card-wide {
+    grid-column: span 1;
+  }
+
+  .massage-card-waxing {
     grid-column: span 1;
   }
 
