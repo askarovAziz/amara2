@@ -506,6 +506,89 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(el);
   });
 
+
+  // ========================================
+  // LEGEND LINE-BY-LINE REVEAL
+  // ========================================
+  const legendSection = document.querySelector('.legend');
+
+  if (legendSection) {
+    const legendParagraphs = legendSection.querySelectorAll('.legend-paragraph, .legend-paragraph-highlight');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const splitLegendParagraphIntoLines = (paragraph) => {
+      const pieces = [];
+      let current = [];
+
+      paragraph.childNodes.forEach((node) => {
+        if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'BR') {
+          pieces.push(current);
+          current = [];
+        } else {
+          current.push(node);
+        }
+      });
+
+      if (current.length) {
+        pieces.push(current);
+      }
+
+      const fragment = document.createDocumentFragment();
+
+      pieces.forEach((nodes) => {
+        if (!nodes.length) {
+          return;
+        }
+
+        const line = document.createElement('span');
+        line.className = 'legend-line';
+
+        const inner = document.createElement('span');
+        inner.className = 'legend-line-inner';
+
+        nodes.forEach((node) => {
+          inner.appendChild(node.cloneNode(true));
+        });
+
+        line.appendChild(inner);
+        fragment.appendChild(line);
+      });
+
+      paragraph.innerHTML = '';
+      paragraph.appendChild(fragment);
+    };
+
+    legendParagraphs.forEach(splitLegendParagraphIntoLines);
+
+    const legendLines = legendSection.querySelectorAll('.legend-line-inner');
+
+    if (prefersReducedMotion) {
+      legendLines.forEach((line) => {
+        line.style.opacity = '1';
+        line.style.transform = 'translateY(0)';
+      });
+    } else {
+      legendLines.forEach((line, index) => {
+        line.style.setProperty('--line-index', index);
+      });
+
+      const legendObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            legendSection.classList.add('is-visible');
+            legendObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        root: null,
+        threshold: 0.25,
+        rootMargin: '0px 0px -8% 0px'
+      });
+
+      legendObserver.observe(legendSection);
+    }
+  }
+
   // ========================================
   // FORM HANDLING
   // ========================================
