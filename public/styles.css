@@ -1665,45 +1665,121 @@ body.menu-open .floating-actions {
   position: relative;
   padding: 120px 0;
   background: linear-gradient(180deg, var(--color-bg-light) 0%, var(--color-bg) 100%);
+  overflow: hidden;
 }
 
-.healers-grid {
+.healers-carousel {
   margin-top: 56px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  position: relative;
+  display: flex;
+  align-items: center;
   gap: 24px;
 }
 
-.healer-card {
-  border: 1px solid var(--color-border);
-  background: linear-gradient(180deg, rgba(212, 165, 116, 0.08), rgba(212, 165, 116, 0.02));
-  padding: 32px 28px;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+.healers-viewport {
+  overflow: hidden;
+  width: 100%;
+  padding: 24px 0 28px;
 }
 
-.healer-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(212, 165, 116, 0.45);
+.healers-track {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.healer-slide {
+  flex: 0 0 clamp(184px, 21vw, 256px);
+  pointer-events: none;
+  transform-origin: center center;
+  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.75s ease, filter 0.75s ease;
+}
+
+.healer-slide-inner {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(212, 165, 116, 0.22);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(245, 239, 234, 0.95));
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+}
+
+.healer-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+
+.healer-meta {
+  padding: 18px 14px 16px;
+  text-align: center;
 }
 
 .healer-name {
   font-family: var(--font-serif);
-  font-size: 34px;
+  font-size: clamp(20px, 2vw, 33px);
   color: var(--color-primary);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .healer-role {
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: 12px;
+  font-size: 11px;
   color: var(--color-text-muted);
-  margin-bottom: 14px;
+  opacity: 0.9;
 }
 
-.healer-description {
-  color: var(--color-text);
-  opacity: 0.9;
+.healer-slide.is-center {
+  opacity: 1;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.healer-slide.is-near {
+  opacity: 0.72;
+  z-index: 4;
+}
+
+.healer-slide.is-outer {
+  opacity: 0.42;
+  z-index: 3;
+}
+
+.healer-slide.is-far {
+  opacity: 0.24;
+  z-index: 2;
+}
+
+.healers-nav {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 165, 116, 0.45);
+  background: linear-gradient(135deg, rgba(248, 244, 239, 0.95), rgba(233, 223, 215, 0.95));
+  color: #372212;
+  font-size: 42px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.healers-nav:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.28);
+}
+
+.healers-nav:focus-visible {
+  outline: 2px solid rgba(212, 165, 116, 0.85);
+  outline-offset: 2px;
 }
 
 
@@ -1942,6 +2018,24 @@ body.menu-open .floating-actions {
     grid-template-columns: 1fr;
   }
 
+  .healers-carousel {
+    gap: 16px;
+  }
+
+  .healers-nav {
+    width: 48px;
+    height: 48px;
+    font-size: 36px;
+  }
+
+  .healers-track {
+    gap: 14px;
+  }
+
+  .healer-slide {
+    flex-basis: clamp(156px, 42vw, 208px);
+  }
+
   .massages-filter {
     gap: 8px;
     margin-bottom: 32px;
@@ -1959,9 +2053,6 @@ body.menu-open .floating-actions {
     max-width: 320px;
   }
 
-  .healers-grid {
-    grid-template-columns: 1fr;
-  }
 
   .massage-card-wide {
     grid-column: span 1;
