@@ -1698,6 +1698,20 @@ body.menu-open .floating-actions {
    HEALERS SECTION
    ======================================== */
 
+
+.healers-video-section {
+  width: 100%;
+  background: #000;
+  line-height: 0;
+}
+
+.healers-video {
+  width: 100%;
+  height: clamp(240px, 48vw, 620px);
+  object-fit: cover;
+  display: block;
+}
+
 .healers-section {
   position: relative;
   padding: 120px 0;
