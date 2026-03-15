@@ -83,15 +83,75 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ========================================
-  // MASSAGES FILTER TABS
+  // MASSAGES FILTER TABS + SEE MORE/LESS
   // ========================================
   const filterButtons = document.querySelectorAll('.massages-filter-btn');
-  const massageCards = document.querySelectorAll('#massagesGrid .massage-card');
+  const massageCards = Array.from(document.querySelectorAll('#massagesGrid .massage-card'));
+  const massagesGrid = document.getElementById('massagesGrid');
+  const massagesToggleBtn = document.getElementById('massagesToggleBtn');
 
-  if (filterButtons.length > 0 && massageCards.length > 0) {
+  if (filterButtons.length > 0 && massageCards.length > 0 && massagesGrid && massagesToggleBtn) {
+    let activeFilter = 'all';
+    let isExpanded = false;
+
+    const MOBILE_BREAKPOINT = 768;
+    const getCollapsedLimit = () => (window.innerWidth <= MOBILE_BREAKPOINT ? 4 : 6);
+
+    const applyMassagesState = ({ animate = true } = {}) => {
+      const previousHeight = massagesGrid.scrollHeight;
+
+      if (animate) {
+        massagesGrid.style.maxHeight = `${previousHeight}px`;
+        void massagesGrid.offsetHeight;
+      }
+
+      const visibleCards = massageCards.filter((card) => {
+        const category = card.dataset.category;
+        return activeFilter === 'all' || category === activeFilter;
+      });
+
+      const collapsedLimit = getCollapsedLimit();
+      const hasOverflow = visibleCards.length > collapsedLimit;
+      const shouldExpand = isExpanded && hasOverflow;
+      const cardsToShowCount = shouldExpand ? visibleCards.length : Math.min(visibleCards.length, collapsedLimit);
+
+      massageCards.forEach((card) => card.classList.add('is-hidden'));
+
+      visibleCards.forEach((card, index) => {
+        card.classList.toggle('is-hidden', index >= cardsToShowCount);
+      });
+
+      massagesToggleBtn.classList.toggle('is-hidden', !hasOverflow);
+      massagesToggleBtn.hidden = !hasOverflow;
+
+      if (!hasOverflow) {
+        isExpanded = false;
+        massagesToggleBtn.textContent = 'See More';
+        massagesToggleBtn.setAttribute('aria-expanded', 'false');
+        massagesGrid.style.maxHeight = '';
+        return;
+      }
+
+      massagesToggleBtn.textContent = shouldExpand ? 'See Less' : 'See More';
+      massagesToggleBtn.setAttribute('aria-expanded', String(shouldExpand));
+
+      const targetHeight = massagesGrid.scrollHeight;
+
+      massagesGrid.style.maxHeight = `${targetHeight}px`;
+
+      if (shouldExpand) {
+        window.setTimeout(() => {
+          if (isExpanded && activeFilter) {
+            massagesGrid.style.maxHeight = 'none';
+          }
+        }, 420);
+      }
+    };
+
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {
-        const activeFilter = button.dataset.filter || 'all';
+        activeFilter = button.dataset.filter || 'all';
+        isExpanded = false;
 
         filterButtons.forEach((btn) => {
           const isActive = btn === button;
@@ -99,14 +159,26 @@ document.addEventListener('DOMContentLoaded', function() {
           btn.setAttribute('aria-selected', String(isActive));
         });
 
-        massageCards.forEach((card) => {
-          const category = card.dataset.category;
-          const shouldShow = activeFilter === 'all' || category === activeFilter;
-
-          card.classList.toggle('is-hidden', !shouldShow);
-        });
+        applyMassagesState({ animate: true });
       });
     });
+
+    massagesToggleBtn.addEventListener('click', () => {
+      isExpanded = !isExpanded;
+      applyMassagesState({ animate: true });
+    });
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        applyMassagesState({ animate: false });
+      }, 120);
+    });
+
+    massagesGrid.style.overflow = 'hidden';
+    massagesGrid.style.transition = 'max-height 0.42s ease';
+    applyMassagesState({ animate: false });
   }
 
   // ========================================
