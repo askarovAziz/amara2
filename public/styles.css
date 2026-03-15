@@ -2031,6 +2031,14 @@ body.menu-open .floating-actions {
     grid-column: span 2;
   }
 
+  .massage-card-horizontal {
+    display: block;
+  }
+
+  .massage-card-horizontal .massage-card-image {
+    min-height: 260px;
+  }
+
   .journey-content {
     grid-template-columns: 1fr;
   }
