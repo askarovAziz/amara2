@@ -610,12 +610,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const whatsappNumber = '971504715070';
       const whatsappText = [
-        'Здравствуйте! Новая заявка с сайта AMARA:',
-        `Имя: ${name || '-'}`,
+        'Hello! New request from the AMARA website:',
+        `Name: ${name || '-'}`,
         `Email: ${email || '-'}`,
-        `Телефон: ${phone || '-'}`,
-        `Услуга: ${service || '-'}`,
-        `Комментарий: ${message || '-'}`
+        `Phone: ${phone || '-'}`,
+        `Service: ${service || '-'}`,
+        `Comment: ${message || '-'}`
       ].join('\n');
 
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
