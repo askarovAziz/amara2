@@ -370,14 +370,28 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
       
       const formData = new FormData(this);
-      const data = {};
-      formData.forEach((value, key) => {
-        data[key] = value;
-      });
-
-      // Show success message (in production, send to server)
       const submitBtn = this.querySelector('.form-submit');
       const originalText = submitBtn.innerHTML;
+
+      const name = (formData.get('name') || '').toString().trim();
+      const email = (formData.get('email') || '').toString().trim();
+      const phone = (formData.get('phone') || '').toString().trim();
+      const service = (formData.get('service') || '').toString().trim();
+      const message = (formData.get('message') || '').toString().trim();
+
+      const whatsappNumber = '971504715070';
+      const whatsappText = [
+        'Здравствуйте! Новая заявка с сайта AMARA:',
+        `Имя: ${name || '-'}`,
+        `Email: ${email || '-'}`,
+        `Телефон: ${phone || '-'}`,
+        `Услуга: ${service || '-'}`,
+        `Комментарий: ${message || '-'}`
+      ].join('\n');
+
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
+
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
       
       submitBtn.innerHTML = '<span>Thank You!</span>';
       submitBtn.style.background = '#4a9c6d';

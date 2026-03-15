@@ -903,16 +903,16 @@
           
           <form class="journey-form">
             <div class="form-group">
-              <input type="text" id="name" placeholder="Your Name" required>
+              <input type="text" id="name" name="name" placeholder="Your Name" required>
             </div>
             <div class="form-group">
-              <input type="email" id="email" placeholder="Email Address" required>
+              <input type="email" id="email" name="email" placeholder="Email Address" required>
             </div>
             <div class="form-group">
-              <input type="tel" id="phone" placeholder="Phone Number">
+              <input type="tel" id="phone" name="phone" placeholder="Phone Number">
             </div>
             <div class="form-group">
-              <select id="service">
+              <select id="service" name="service">
                 <option value="">Select a Treatment</option>
                 <option value="classic">Classic Massage</option>
                 <option value="deep-tissue">Deep Tissue Massage</option>
@@ -932,7 +932,7 @@
               </select>
             </div>
             <div class="form-group">
-              <textarea id="message" placeholder="Special requests or preferred time..." rows="4"></textarea>
+              <textarea id="message" name="message" placeholder="Special requests or preferred time..." rows="4"></textarea>
             </div>
             <button type="submit" class="form-submit">
               <span>Book Your Journey</span>
