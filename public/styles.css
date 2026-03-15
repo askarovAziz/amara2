@@ -1390,6 +1390,7 @@ body.menu-open .floating-actions {
   position: relative;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
+  border-radius: 16px;
   overflow: hidden;
   transition: all 0.4s ease;
 }
