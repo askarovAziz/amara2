@@ -331,7 +331,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (viewport && track) {
       const originalSlides = Array.from(track.querySelectorAll('.healer-slide'));
       const totalSlides = originalSlides.length;
-      const clonesPerSide = Math.min(3, totalSlides);
+      const clonesPerSide = Math.min(4, totalSlides);
       let currentIndex = 0;
       let isAnimating = false;
 
@@ -363,15 +363,15 @@ document.addEventListener('DOMContentLoaded', function() {
       const computeScale = (distance) => {
         if (distance === 0) return 1;
         if (distance === 1) return 0.9;
-        if (distance === 2) return 0.78;
-        return 0.66;
+        if (distance === 2) return 0.8;
+        return 0.7;
       };
 
       const updateSlideStates = () => {
         allSlides.forEach((slide) => {
           const realIndex = Number(slide.dataset.realIndex || 0);
           const distance = Math.abs(getLoopDistance(realIndex, currentIndex));
-          const translateX = getLoopDistance(realIndex, currentIndex) * 10;
+          const translateX = getLoopDistance(realIndex, currentIndex) * 6;
           const scale = computeScale(distance);
 
           slide.style.transform = `translateX(${translateX}px) scale(${scale})`;
