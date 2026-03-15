@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let isExpanded = false;
 
     const MOBILE_BREAKPOINT = 768;
-    const getCollapsedLimit = () => (window.innerWidth <= MOBILE_BREAKPOINT ? 4 : 6);
+    const getCollapsedLimit = () => (window.innerWidth <= MOBILE_BREAKPOINT ? 4 : 7);
 
     const applyMassagesState = ({ animate = true } = {}) => {
       const previousHeight = massagesGrid.scrollHeight;
@@ -126,13 +126,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
       if (!hasOverflow) {
         isExpanded = false;
-        massagesToggleBtn.textContent = 'See More';
+        massagesToggleBtn.textContent = 'See more';
         massagesToggleBtn.setAttribute('aria-expanded', 'false');
         massagesGrid.style.maxHeight = '';
         return;
       }
 
-      massagesToggleBtn.textContent = shouldExpand ? 'See Less' : 'See More';
+      massagesToggleBtn.textContent = shouldExpand ? 'See Less' : 'See more';
       massagesToggleBtn.setAttribute('aria-expanded', String(shouldExpand));
 
       const targetHeight = massagesGrid.scrollHeight;
