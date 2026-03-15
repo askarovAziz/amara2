@@ -254,9 +254,22 @@
 
     <!-- Healers Intro Video -->
     <section class="healers-video-section" aria-label="Our Healers video introduction">
-      <video class="healers-video" autoplay muted loop playsinline preload="metadata">
+      <video
+        class="healers-video"
+        id="healersVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        webkit-playsinline
+        preload="auto"
+        poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/moroccan-bath-XeSTABgX7qKMFfD8tpaA28jun8mEiK.jpg"
+      >
         <source src="https://cdn.coverr.co/videos/coverr-woman-getting-a-relaxing-massage-1579/1080p.mp4" type="video/mp4">
       </video>
+      <div class="healers-video-fallback" id="healersVideoFallback" hidden>
+        <p>Video preview is unavailable right now</p>
+      </div>
     </section>
 
     <!-- Healers Section -->

@@ -93,6 +93,62 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ========================================
+  // HEALERS VIDEO RESILIENCE
+  // ========================================
+  const healersVideo = document.getElementById('healersVideo');
+  const healersVideoFallback = document.getElementById('healersVideoFallback');
+
+  if (healersVideo) {
+    const revealVideoFallback = () => {
+      if (!healersVideoFallback) return;
+      healersVideoFallback.hidden = false;
+    };
+
+    const hideVideoFallback = () => {
+      if (!healersVideoFallback) return;
+      healersVideoFallback.hidden = true;
+    };
+
+    const attemptVideoPlayback = () => {
+      const playPromise = healersVideo.play();
+
+      if (playPromise && typeof playPromise.then === 'function') {
+        playPromise
+          .then(() => {
+            hideVideoFallback();
+          })
+          .catch(() => {
+            revealVideoFallback();
+          });
+      }
+    };
+
+    healersVideo.addEventListener('canplay', hideVideoFallback);
+    healersVideo.addEventListener('playing', hideVideoFallback);
+    healersVideo.addEventListener('error', revealVideoFallback);
+
+    attemptVideoPlayback();
+
+    const resumePlaybackEvents = ['click', 'touchstart', 'keydown'];
+    const resumeOnInteraction = () => {
+      attemptVideoPlayback();
+      resumePlaybackEvents.forEach((eventName) => {
+        window.removeEventListener(eventName, resumeOnInteraction);
+      });
+    };
+
+    resumePlaybackEvents.forEach((eventName) => {
+      window.addEventListener(eventName, resumeOnInteraction, { once: true, passive: true });
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        attemptVideoPlayback();
+      }
+    });
+  }
+
+  // ========================================
   // MASSAGES FILTER TABS + SEE MORE/LESS
   // ========================================
   const filterButtons = document.querySelectorAll('.massages-filter-btn');
