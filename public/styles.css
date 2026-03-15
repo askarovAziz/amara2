@@ -953,6 +953,28 @@ body.menu-open .floating-actions {
   text-align: center;
 }
 
+.legend-line {
+  display: block;
+  overflow: hidden;
+  margin-bottom: 0.2em;
+}
+
+.legend-line:last-child {
+  margin-bottom: 0;
+}
+
+.legend-line-inner {
+  display: block;
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: transform, opacity;
+}
+
+.legend.is-visible .legend-line-inner {
+  animation: legendLineReveal 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(var(--line-index, 0) * 120ms);
+}
+
 .legend-paragraph {
   color: var(--color-text-muted);
   font-size: 16px;
@@ -966,6 +988,17 @@ body.menu-open .floating-actions {
   font-style: italic;
   color: var(--color-text);
   line-height: 1.8;
+}
+
+@keyframes legendLineReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .legend-divider {
